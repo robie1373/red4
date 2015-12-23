@@ -1,15 +1,19 @@
 defmodule Calcs do
-  def rounded_to_nearest_tenth(val) do
+  def to_nearest_tenth(val) do
     Float.ceil(val, 1)
   end
 
-  def convert_to_km(velocity) do
+  def to_km(velocity) do
     velocity / 1_000
   end
+
+  def square_root(val) do
+    :math.sqrt(val)
+  end
+
 end
 
 defmodule Physics.Rocketry do
-#  import Calcs, only: [convert_to_km: 1]  
 
   def escape_velocity(:earth) do
     %{mass: 5.972e24, radius: 6.371e6}
@@ -29,8 +33,8 @@ defmodule Physics.Rocketry do
   def escape_velocity(planet) when is_map(planet) do
     planet
       |> calculate_escape
-      |> Calcs.convert_to_km
-      |> Calcs.rounded_to_nearest_tenth
+      |> Calcs.to_km
+      |> Calcs.to_nearest_tenth
   end
 
   defp calculate_escape(%{mass: mass, radius: radius}) do

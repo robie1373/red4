@@ -10,27 +10,27 @@ defmodule PhysicsTest do
   
   test "escape_velocity :mars" do
     assert Physics.Rocketry.escape_velocity(:mars) 
-      == 5.03 
+      == 5.1 
   end
 
   test "escape_velocity :moon" do
     assert Physics.Rocketry.escape_velocity(:moon) 
-      == 2.38 
+      == 2.4
   end
 
   test "escape_velocity/1" do
     mars = %{mass: 6.39e23, radius: 3.39e6}
     assert Physics.Rocketry.escape_velocity(mars) ==
-     158.6 
+     5.1 
   end
 
-  test "Calcs#rounded_to_nearest_tenth/1" do
-    assert Calcs.rounded_to_nearest_tenth(1.12) 
+  test "Calcs#to_nearest_tenth/1" do
+    assert Calcs.to_nearest_tenth(1.12) 
       == 1.2
   end
 
-  test "Calcs#convert_to_km/1" do
-    assert Calcs.convert_to_km(3_845)
+  test "Calcs#to_km/1" do
+    assert Calcs.to_km(3_845)
       == 3.845
   end
 end
