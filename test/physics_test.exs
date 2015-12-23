@@ -1,7 +1,16 @@
 defmodule PhysicsTest do
   use ExUnit.Case
   doctest Physics
-  import Physics
+
+  test "Calcs#to_nearest_tenth/1" do
+    assert Calcs.to_nearest_tenth(1.12) 
+      == 1.2
+  end
+
+  test "Calcs#to_km/1" do
+    assert Calcs.to_km(3_845)
+      == 3.845
+  end
 
   test "escape_velocity :earth" do
     assert Physics.Rocketry.escape_velocity(:earth) 
@@ -22,16 +31,6 @@ defmodule PhysicsTest do
     mars = %{mass: 6.39e23, radius: 3.39e6}
     assert Physics.Rocketry.escape_velocity(mars) ==
      5.1 
-  end
-
-  test "Calcs#to_nearest_tenth/1" do
-    assert Calcs.to_nearest_tenth(1.12) 
-      == 1.2
-  end
-
-  test "Calcs#to_km/1" do
-    assert Calcs.to_km(3_845)
-      == 3.845
   end
 end
 

@@ -1,32 +1,20 @@
-defmodule Calcs do
-  def to_nearest_tenth(val) do
-    Float.ceil(val, 1)
-  end
-
-  def to_km(velocity) do
-    velocity / 1_000
-  end
-
-  def square_root(val) do
-    :math.sqrt(val)
-  end
-
-end
-
 defmodule Physics.Rocketry do
 
+  import Calcs
+  import Physics.Laws
+
   def escape_velocity(:earth) do
-    %{mass: 5.972e24, radius: 6.371e6}
+    Planets.earth
     |> escape_velocity
   end
 
   def escape_velocity(:mars) do
-    %{mass: 6.39e23, radius: 3.4e6}
+    Planets.mars
     |> escape_velocity
   end
 
   def escape_velocity(:moon) do
-    %{mass: 7.35e22, radius: 1.738e6}
+    Planets.moon
     |> escape_velocity
   end
 
@@ -37,10 +25,18 @@ defmodule Physics.Rocketry do
       |> Calcs.to_nearest_tenth
   end
 
+  def orbital_speed(height) do
+    newtons_gravitational_constant * Planets.earth.mass / orbital_radius(height)
+    |> Calcs.square_root
+  end
+
   defp calculate_escape(%{mass: mass, radius: radius}) do
-    newtons_constant = 6.67e-11
-    2 * newtons_constant * mass / radius
-      |> :math.sqrt
+    2 * newtons_gravitational_constant * mass / radius
+      |> Calcs.square_root
+  end
+
+  defp orbital_radius(height) do
+    Planets.earth.radius + (height |> Calcs.to_m)
   end
 
 end
