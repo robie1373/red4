@@ -11,4 +11,9 @@ defmodule CalcsTest do
     assert Calcs.to_km(3_845)
       == 3.845
   end
+
+  test "cubed_root" do
+    assert Calcs.cubed_root(27) == 3.0
+  end
+
 end
