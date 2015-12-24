@@ -30,6 +30,10 @@ defmodule Physics.Rocketry do
     |> Calcs.square_root
   end
 
+  def orbital_acceleration(height) do
+    (orbital_speed(height) |> Calcs.squared) / orbital_radius(height)
+  end
+
   defp calculate_escape(%{mass: mass, radius: radius}) do
     2 * newtons_gravitational_constant * mass / radius
       |> Calcs.square_root

@@ -2,16 +2,6 @@ defmodule PhysicsTest do
   use ExUnit.Case
   doctest Physics
 
-  test "Calcs#to_nearest_tenth/1" do
-    assert Calcs.to_nearest_tenth(1.12) 
-      == 1.2
-  end
-
-  test "Calcs#to_km/1" do
-    assert Calcs.to_km(3_845)
-      == 3.845
-  end
-
   test "escape_velocity :earth" do
     assert Physics.Rocketry.escape_velocity(:earth) 
       == 11.2
@@ -32,5 +22,15 @@ defmodule PhysicsTest do
     assert Physics.Rocketry.escape_velocity(mars) ==
      5.1 
   end
+
+  test "orbital_acceleration" do
+    speed = 100
+    height = 2.0e9
+    orbital_radius = 6.371e6 + height
+    result = (speed * speed) / orbital_radius
+    assert Physics.Rocketry.orbital_acceleration(height)
+      == result
+  end
+
 end
 
