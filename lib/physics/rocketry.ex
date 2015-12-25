@@ -25,6 +25,8 @@ defmodule Physics.Rocketry do
       |> Calcs.to_nearest_tenth
   end
 
+  def orbital_speed(height) when is_number(height), do: orbital_speed(%{planet: Planets.earth, height: height})
+  
   def orbital_speed(args = %{planet: planet, height: _height}) do
     newtons_gravitational_constant * planet.mass / orbital_radius(args)
     |> Calcs.square_root
