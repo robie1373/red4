@@ -1,5 +1,5 @@
 defmodule CalcsTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest Calcs
 
   test "Calcs#to_nearest_tenth/1" do
